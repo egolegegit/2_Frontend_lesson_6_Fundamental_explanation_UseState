@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+
+import './App.css'
+
+// const factorial = (n) => {
+//   if (n === 1) {
+//     console.log('calculated ...')
+//     return 1
+//   }
+//   return n * factorial(n - 1)
+// }
 
 function App() {
+  const [counter, setCounter] = useState({
+    value: 1,
+    id: 123456,
+  })
+
+  const handleIncrement = () => {
+    setCounter((prevState) => {
+      return { ...prevState, value: prevState.value + 1 }
+    })
+  }
+
+  const handledecrement = () => {
+    setCounter((prevState) => {
+      return { ...prevState, value: prevState.value - 1 }
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>{counter.value}</p>
+      <button onClick={handleIncrement}>Increment</button>
+      <button onClick={handledecrement}>Decrement</button>
+      <div>{JSON.stringify(counter)}</div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
